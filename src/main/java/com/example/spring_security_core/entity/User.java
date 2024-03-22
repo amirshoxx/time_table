@@ -16,6 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+//hamroyev oybek
 
 public class User implements UserDetails {
     @Id
