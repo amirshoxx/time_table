@@ -20,26 +20,10 @@ public class Loader implements CommandLineRunner {
 
     @Autowired
     UserRepo userRepo;
-    @Autowired
-    DayRepo dayRepo;
-    @Autowired
-    GroupRepo groupRepo;
-    @Autowired
-    TimeTableRepo timeTableRepo;
-    @Autowired
-    TimeTableStudentRepo timeTableStudentRepo;
-    @Autowired
-    TimeTableDayRepo timeTableDayRepo;
-    @Autowired
-    RomeRepo romeRepo;
-    @Autowired
-    CourseRepo courseRepo;
-
 
     @Override
     public void run(String... args) throws Exception {
         List<Role> all = repo.findAll();
-
         if (all.isEmpty()) {
             List<Role>   roles = repo.saveAll(List.of(
                      Role.builder()
@@ -51,32 +35,6 @@ public class Loader implements CommandLineRunner {
                     Role.builder()
                             .name("ROLE_USER").build()
             ));
-            User user = new User( "abdugafforov ozodbek","admin", passwordEncoder.encode("123"), 12,roles, true);
-              userRepo.save(user);
-              dayRepo.saveAll(List.of(
-                    Days.builder()
-                            .day("toq")
-                            .build()
-                    ,
-                    Days.builder()
-                            .day("juft")
-                            .build()
-
-
-            ));
-            Rome rome = Rome.builder()
-                    .name("1-xona")
-                    .build();
-              romeRepo.save(rome);
-
-            Course course = Course.builder()
-
-                    .name("full_stack")
-                    .build();
-           courseRepo.save(course);
-
         }
-
-
     }
 }
